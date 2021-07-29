@@ -34,3 +34,10 @@ if __name__ == '__main__':
   assert parse_cookie('name=') == {'name': ''}
   assert parse_cookie('name=Dima;age=28;city=Kharkov') == {'name': 'Dima', 'age': '28', 'city': 'Kharkov'}
   assert parse_cookie('name=Dima;family name=Ivanov;gender=male') == {'name': 'Dima', 'family name': 'Ivanov', 'gender': 'male'}
+  assert parse_cookie('name=Dima;age=28') == {'name': 'Dima', 'age': '28'}
+  assert parse_cookie('name=;age=28') == {'name': '', 'age': '28'}
+  assert parse_cookie('name=;age=') == {'name': '', 'age': ''}
+  assert parse_cookie('nickname=Dima & Dima;age=30') == {'nickname': 'Dima & Dima', 'age': '30'}
+  assert parse_cookie('name=Dima;age=28;name=Dima;age=28') == {'name': 'Dima', 'age': '28', 'name': 'Dima', 'age': '28'}
+  assert parse_cookie('name=Dima;age=') == {'name': 'Dima', 'age': ''}
+  assert parse_cookie('name=Dima;name=Vova;name=Kostya') == {'name': 'Dima', 'name': 'Vova', 'name': 'Kostya'}
